@@ -49,11 +49,11 @@ class App extends Component {
     const { jokes } = this.state;
     return (
       <Fragment>
-        <h1>The Future Home of Dad Jokes</h1>
+        <h1>G.A.J</h1>
         <div className="jokeContainer">
           <Jokes setup={jokes.setup} punchline={jokes.punchline} />
         </div>
-        <button onClick={this.handleClick}>New Joke</button>
+        <button onClick={this.handleClick}>Grab A Joke</button>
       </Fragment>
     );
   }
