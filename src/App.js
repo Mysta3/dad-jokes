@@ -1,23 +1,18 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import './App.css';
 import Jokes from './Jokes';
 const axios = require('axios');
 const url = 'https://official-joke-api.appspot.com/random_joke';
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      jokes: [],
-      queue: []
-    };
-  }
 
-  componentDidMount() {
+function App() {
+  const [getJokes, setJokes] = useState([]);
+
+  useEffect(() => {
     axios
       .get(url)
       .then(response => {
         // handle success
-        this.setState({ jokes: response.data });
+        setJokes(response.data);
       })
       .catch(error => {
         // handle error
@@ -26,23 +21,15 @@ class App extends Component {
       .then(response => {
         // always executed
       });
-  }
+  }, []);
 
-  handleClick = () => {
+  const handleClick = () => {
     const url = 'https://official-joke-api.appspot.com/random_joke';
-    const { queue } = this.state;
     axios
       .get(url)
       .then(response => {
         // handle success
-        this.setState({ jokes: response.data });
-        if (queue.length >= 10) {
-          queue.pop(response[0]);
-        } else {
-          queue.push(response);
-        }
-
-        console.log(this.state.queue);
+        setJokes(response.data);
       })
       .catch(error => {
         // handle error
@@ -52,20 +39,19 @@ class App extends Component {
         // always executed
       });
   };
-  
 
-  render() {
-    const { jokes } = this.state;
-    return (
+  return (
+    <div>
       <Fragment>
         <h1>G.A.J</h1>
         <div className="jokeContainer">
-          <Jokes setup={jokes.setup} punchline={jokes.punchline} />
+          <Jokes setup={getJokes.setup} punchline={getJokes.punchline} />
         </div>
-        <button onClick={this.handleClick}>Grab A Joke</button>
+        <button onClick={handleClick}>Grab A Joke</button>
       </Fragment>
-    );
-  }
+    </div>
+  );
 }
 
 export default App;
+

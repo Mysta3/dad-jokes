@@ -1,17 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Jokes extends Component {
-  render() {
-
-    const {setup} = this.props
-    const {punchline} = this.props
-    return (
-      <>
-        <p>{setup}</p>
-        <p>{punchline}</p>
-      </>
-    );
-  }
+function Jokes(props) {
+  const { setup, punchline } = props;
+  return (
+    <>
+      <p className="jokeSetup">{setup}</p>
+      <p>{punchline}</p>
+    </>
+  );
 }
 
-export default Jokes
+export default Jokes;
