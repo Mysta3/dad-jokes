@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import './App.css';
 import Jokes from './Jokes';
-
+const axios = require('axios');
+const url = 'https://official-joke-api.appspot.com/random_joke';
 class App extends Component {
   constructor(props) {
     super(props);
@@ -12,29 +13,29 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const url = 'https://official-joke-api.appspot.com/random_joke';
-
-    fetch(url)
+    axios
+      .get(url)
       .then(response => {
-        return response.json();
+        // handle success
+        this.setState({ jokes: response.data });
+      })
+      .catch(error => {
+        // handle error
+        console.log(error);
       })
       .then(response => {
-        console.log(response);
-        this.setState({ jokes: response });
-      })
-      .catch(console.err);
+        // always executed
+      });
   }
 
   handleClick = () => {
     const url = 'https://official-joke-api.appspot.com/random_joke';
     const { queue } = this.state;
-    fetch(url)
+    axios
+      .get(url)
       .then(response => {
-        return response.json();
-      })
-      .then(response => {
-        console.log(response);
-        this.setState({ jokes: response });
+        // handle success
+        this.setState({ jokes: response.data });
         if (queue.length >= 10) {
           queue.pop(response[0]);
         } else {
@@ -43,8 +44,16 @@ class App extends Component {
 
         console.log(this.state.queue);
       })
-      .catch(console.err);
+      .catch(error => {
+        // handle error
+        console.log(error);
+      })
+      .then(response => {
+        // always executed
+      });
   };
+  
+
   render() {
     const { jokes } = this.state;
     return (

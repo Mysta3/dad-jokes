@@ -1,11 +1,37 @@
-button,
+body {
+  background: #009fff; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #ec2f4b,
+    #009fff
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #ec2f4b,
+    #009fff
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
 h1 {
-  background: #444444;
+  background: #00d8ff;
   color: white;
+  padding-left: 2%;
+  font-size: 3rem;
+}
+
+button {
+  background: #ec2f4b;
+  color: white;
+  font-weight: bolder;
+  box-shadow: 0px 1px 5px black;
+  border-radius: 20%;
+  text-align: center;
+  font-size: 2rem;
+  margin: 2vh 40vw;
+  padding: 3%;
 }
 
 .jokeContainer {
-  box-shadow: 1px 2px 5px black;
+  box-shadow: 0px 2px 35px black;
   background: white;
   border-radius: 5%;
   box-sizing: border-box;
@@ -20,16 +46,6 @@ h1 {
   margin-bottom: 5%;
   line-height: 2rem;
 }
-p{
-  padding-top: 1%;
-  padding-bottom: 2%;
-}
-
-button {
-  box-shadow: 0px 1px 5px black;
-  border-radius: 20%;
-  text-align: center;
-  font-size: 2rem;
-  margin-left: 43%;
-  padding: 3%;
+p {
+  padding: 5%;
 }
